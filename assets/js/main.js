@@ -55,3 +55,56 @@ sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{});
 sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400}); 
 sr.reveal('.home__social-icon',{ interval: 200}); 
 sr.reveal('.skills__data, .work__img, .contact__input',{interval: 200}); 
+sr.reveal('.video-container', { interval: 200 }); // Adicionamos a classe para o vídeo
+
+document.addEventListener("DOMContentLoaded", function() {
+    var overlay = document.getElementById("overlay");
+    var salvarBtn = document.getElementById("salvar");
+
+    // Adiciona um evento de clique ao botão "Salvar"
+    salvarBtn.addEventListener("click", function() {
+        // Mescla as imagens
+        var canvas = document.createElement('canvas');
+        var context = canvas.getContext('2d');
+        var img1 = document.getElementById('img1');
+        var img2 = document.getElementById('img2');
+        
+        canvas.width = img1.width;
+        canvas.height = img1.height;
+        
+        context.drawImage(img1, 0, 0);
+        context.globalAlpha = 0.5; // altere a opacidade conforme necessário
+        context.drawImage(img2, 0, 0);
+        
+        // Salva a imagem mesclada
+        var link = document.createElement('a');
+        link.download = 'imagem_mesclada.png';
+        link.href = canvas.toDataURL();
+        link.click();
+    });
+
+    // Adicione a lógica para alterar a cor da imagem aqui
+    // Por exemplo, você pode adicionar um evento de clique ao overlay
+    overlay.addEventListener("click", function() {
+        overlay.style.backgroundColor = "rgba(0, 0, 255, 0.5)"; // Altera a cor do overlay para azul com 50% de opacidade
+    });
+});
+
+// (function() {
+//     var originalAlert = window.alert;
+//     window.alert = function() {
+//         originalAlert('A inspeção do código é desencorajada.');
+//     };
+//     console.log = function() {};
+//     console.dir = function() {};
+//     document.addEventListener('contextmenu', function(e) {
+//         e.preventDefault();
+//     });
+// })();
+
+// document.addEventListener("keydown", function(event) {
+//     if (event.key === "PrintScreen" || event.key === "PrtScn" || (event.ctrlKey && event.key === "c")) {
+//         event.preventDefault();
+//         alert("Captura de tela desativada.");
+//     }
+// });
